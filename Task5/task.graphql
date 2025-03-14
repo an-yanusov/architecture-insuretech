@@ -1,0 +1,80 @@
+# Ключевые ресурсы запросов:
+# - Клиент
+# - Документы клиента
+# - Родственники клиента
+
+# Операции:
+# - Получение данных о клиенте
+# - Получение списка документов клиента
+# - Получение информации о родственниках клиента
+
+# Сущности
+type Client {
+    id: ID!
+    name: String!
+    age: Int
+}
+
+type Document {
+    id: ID!
+    type: String
+    number: String
+    issueDate: String
+    expiryDate: String
+}
+
+type Relative {
+    id: ID!
+    relationType: String
+    name: String
+    age: Int
+}
+
+# Запросы для получения данных:
+type Query {
+    client(id: ID!): Client    # Получить информацию о клиенте по ID
+    clients: [Client]            # Получить список всех клиентов (дополнительно)
+    documents(clientId: ID!): [Document]        # Список документов клиента
+    relatives(clientId: ID!): [Relative]         # Информация о родственниках клиента
+}
+
+# Запрос информации о конкретном клиенте
+query {
+    client(id: "client1") {
+        id
+        name
+        age
+    }
+}
+
+
+# Запрос всех клиентов
+query {
+    clients {
+        id
+        name
+        age
+    }
+}
+
+# Запрос документов конкретного клиента
+query {
+    documents(clientId: "client1") {
+        id
+        type
+        number
+        issueDate
+        expiryDate
+    }
+}
+
+
+# Запрос родственников конкретного клиента
+query {
+    relatives(clientId: "client1") {
+        id
+        relationType
+        name
+        age
+    }
+}
