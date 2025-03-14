@@ -17,6 +17,9 @@ spec:
       containers:
       - name: scaletestapp-container
         image: shestera/scaletestapp
+        ports:
+          - containerPort: 8080
+            protocol: TCP
         resources:
           limits:
             memory: "30Mi"
